@@ -1,0 +1,36 @@
+{
+  "name": "keystone-architecture",
+  "displayName": "Keystone Architecture",
+  "version": "1.0.0",
+  "description": "C4 architecture model of your system for your team and your AI: built from code, reviewed in branches, read back as focused context over MCP.",
+  "author": {
+    "name": "Keystone",
+    "url": "https://keystone-core.pro"
+  },
+  "homepage": "https://keystone-core.pro",
+  "repository": "https://github.com/runafterasun/keystone-core",
+  "license": "MIT",
+  "keywords": [
+    "architecture",
+    "c4-model",
+    "diagrams",
+    "adr",
+    "er-diagram",
+    "impact-analysis",
+    "mcp"
+  ],
+  "icon": "./assets/logo.png",
+  "documentationUrl": "https://keystone-core.pro/docs/ai",
+  "supportUrl": "https://github.com/runafterasun/keystone-core/issues",
+  "privacyPolicyUrl": "https://keystone-core.pro/privacy",
+  "termsOfServiceUrl": "https://keystone-core.pro/terms",
+  "userConfig": {
+    "token": {
+      "type": "string",
+      "title": "Keystone AI token",
+      "description": "Sign in at https://keystone-core.pro, open a project, then AI assistant > Connection > Create token",
+      "required": true,
+      "sensitive": true
+    }
+  }
+}

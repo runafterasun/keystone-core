@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "keystone": {
+      "type": "http",
+      "url": "https://keystone-core.pro/mcp",
+      "headers": {
+        "Authorization": "Bearer ${user_config.token}"
+      }
+    }
+  }
+}

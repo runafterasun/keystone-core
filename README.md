@@ -38,10 +38,18 @@ On a question about one module, the module slice took **68–77% fewer input tok
 with the same facts in the answer. This compares a slice with the whole model, not a whole coding task
 ([method and limits](https://keystone-core.pro/docs/ai-context-study)).
 
+## Claude Code plugin
+
+Install Keystone as a plugin; Claude Code asks for your token once and keeps it in secure storage:
+
+```
+/plugin install keystone-architecture --marketplace runafterasun/keystone-core
+```
+
 ## Connect your AI
 
 1. Sign in at https://keystone-core.pro and open a project → **AI assistant** → **Connection** → **Create token**.
-2. Add the MCP server in the folder with the code of that project.
+2. Add the MCP server in the folder with the code of that project, or install the plugin above.
 
 **Claude Code**
 
