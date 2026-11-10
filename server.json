@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "pro.keystone-core/keystone",
+  "title": "Keystone",
+  "description": "C4 architecture model of your system, built from code by your AI and read back as focused context.",
+  "repository": {
+    "url": "https://github.com/runafterasun/keystone-core",
+    "source": "github"
+  },
+  "websiteUrl": "https://keystone-core.pro",
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://keystone-core.pro/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer <Keystone AI token>: create one in a project, AI assistant → Connection → Create token",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

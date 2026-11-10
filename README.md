@@ -1,38 +1,41 @@
-<p align="center"><img src="assets/keystone.png" alt="Keystone — architecture that keeps up with your code" width="720"></p>
-
 # Keystone
 
-**One model of your system for the team and for your AI agents.**
+**Understand your system before you change it.**
 
 Keystone keeps a C4 model of your software: systems, services, components with their public API, databases down to
-tables and columns, scenarios and architecture decisions. Your AI coding assistant builds the model from the code,
-keeps it in step with it and reads it back over [MCP](https://modelcontextprotocol.io) as focused context for its next
-task. You review every change before it lands.
+tables and columns, scenarios and architecture decisions. Your AI coding assistant builds the model from the code in
+your environment, keeps it in step with the code and reads it back over [MCP](https://modelcontextprotocol.io) as
+context for its next task. Every change arrives as a branch that your team reviews.
 
 - Website: **https://keystone-core.pro**
 - Live demo, no sign-up: **https://keystone-core.pro/demo**
 - Guide: **https://keystone-core.pro/docs**
-- MCP server: `https://keystone-core.pro/mcp`
+- MCP server: `https://keystone-core.pro/mcp` (Streamable HTTP, bearer token)
 
 This repository holds no source code: it is the public home of Keystone for its MCP server, docs links and feedback.
 
-<p align="center"><img src="assets/editor.jpg" alt="The Keystone editor" width="720"></p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/editor-dark.png">
+  <img src="assets/editor-light.png" alt="The Keystone editor: a service with its components and labelled relationships" width="800">
+</picture>
 
 ## What it does
 
-- **Builds the architecture from code.** Your AI reads the repository in your environment and proposes the model:
-  context, containers, components, ER diagrams from migrations. No repository upload.
-- **Gives the agent the part it needs.** Instead of reading the whole repository again, the agent asks for a module,
-  what depends on an element, the path between two elements or only what changed since last time.
-- **Keeps the model current.** After code changes the AI checks the diagram against the code and sends a proposal.
+- **Builds the architecture from code.** Your AI reads the repository where it already works and proposes the model:
+  context, containers, components, ER diagrams from migrations. Keystone never receives your source code.
+- **Gives the agent the part it needs.** The agent asks for one module, what depends on an element, the path between
+  two elements or only what changed since last time, instead of the whole model.
+- **Keeps the model current.** After code changes the AI checks the diagram against the code and sends a proposal,
+  by hand or from CI: the AI assistant generates the job for GitHub Actions or GitLab CI.
 - **You stay the reviewer.** Every AI proposal arrives as a branch: open it, correct it, merge it or reject it.
-  Merges are three-way, field by field; conflicts are settled one by one.
-- **More than boxes.** Scenarios played over the diagram and as sequence diagrams, architecture decisions (ADR) bound
-  to elements, antipattern review, comments, live co-editing, roles and access.
-- **Export.** PNG and SVG, Markdown with Mermaid, Structurizr DSL, Obsidian notes.
+  Merges are three-way, field by field.
+- **More than boxes.** Scenarios, architecture decisions (ADR) bound to elements, impact analysis, antipattern
+  review with remediation plans, comments, live co-editing, roles and access, system design interview practice.
+- **No lock-in.** Export to PNG, SVG, Markdown with Mermaid, Structurizr DSL and Obsidian notes; import a Structurizr
+  workspace (JSON or DSL).
 
-In our measurement on one project, a question about a module needed **77% fewer input tokens** with the module slice
-than with the full graph, with the same facts in the answer
+On a question about one module, the module slice took **68–77% fewer input tokens** than sending the whole model,
+with the same facts in the answer. This compares a slice with the whole model, not a whole coding task
 ([method and limits](https://keystone-core.pro/docs/ai-context-study)).
 
 ## Connect your AI
@@ -93,8 +96,9 @@ Ready commands the server offers to your client, for example in Claude Code `/mc
 | `record_decision`, `import_decisions` | Record an architecture decision, import existing ADRs |
 | `validate_architecture` | Check the diagram against the code |
 | `sync` | Bring the diagram up to date with the commits since the last sync |
-| `review_antipatterns` | Find architecture antipatterns and explain them |
-| `system_design_interview` | Practise a system design interview |
+| `analyze_impact` | What a change of an element affects, with paths and reasons |
+| `review_antipatterns`, `plan_remediation` | Find architecture antipatterns, plan their fixes in stages |
+| `system_design_interview` | Practise a system design interview on a real diagram |
 
 ## Tools
 
@@ -102,9 +106,10 @@ Reading tools return the part of the model a task needs:
 
 | Tool | What it returns |
 |---|---|
-| `get_architecture` | The whole model as a short map, or one module in full |
-| `search_architecture` | Elements, APIs and tables by name or description, with IDs |
+| `search_architecture` | Elements and tables by name, role or module, with IDs and ready reads for the hits |
+| `get_architecture` | The whole model as a short map, one module or chosen elements in full |
 | `traverse_architecture` | What depends on an element and what it depends on, to a chosen depth |
+| `analyze_impact` | What a change of an element or table affects, with reasons and paths |
 | `find_architecture_path` | The chain of calls and data access between two elements |
 | `get_architecture_delta` | Only what changed since a version of the model |
 | `find_antipattern_candidates` | Shared databases, cycles of synchronous calls, overloaded services |
